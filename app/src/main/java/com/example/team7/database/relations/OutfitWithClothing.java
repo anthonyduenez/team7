@@ -31,4 +31,8 @@ public class OutfitWithClothing {
     public List<Clothing> getClothingItems() {
         return clothingItems;
     }
+
+    public void setClothingItems(List<Clothing> clothingItems) {
+        this.clothingItems = clothingItems;
+    }
 }

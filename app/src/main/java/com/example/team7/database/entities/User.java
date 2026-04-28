@@ -9,10 +9,12 @@ public class User {
     private int userId;
     private String username;
     private String userPassword;
+    private boolean isAdmin;
 
-    public User(String username, String password) {
+    public User(String username, String userPassword) {
         this.username = username;
-        this.userPassword = password;
+        this.userPassword = userPassword;
+        this.isAdmin = false;
     }
 
     public int getUserId() {
@@ -37,5 +39,13 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
