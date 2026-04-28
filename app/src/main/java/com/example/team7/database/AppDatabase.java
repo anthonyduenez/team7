@@ -49,7 +49,6 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class, "AppDatabase")
                             .addCallback(addDefaultValues)
                             .build();
-                    INSTANCE.getOpenHelper().getWritableDatabase();
                 }
             }
         }

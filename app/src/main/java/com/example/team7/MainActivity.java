@@ -1,8 +1,6 @@
 package com.example.team7;
 
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.team7.database.WardrobeRepository;
