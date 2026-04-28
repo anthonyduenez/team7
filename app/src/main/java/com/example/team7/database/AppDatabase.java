@@ -1,6 +1,7 @@
 package com.example.team7.database;
 
 import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
 import com.example.team7.database.dao.OutfitDao;
 import com.example.team7.database.dao.ClothingDao;
@@ -17,8 +18,8 @@ import com.example.team7.database.entities.User;
           version = 1,
           exportSchema = false
 )
-public abstract class AppDatabase {
-    abstract UserDao userDao();
-    abstract OutfitDao outfitDao();
-    abstract ClothingDao clothingDao();
+public abstract class AppDatabase extends RoomDatabase {
+    public abstract UserDao userDao();
+    public abstract OutfitDao outfitDao();
+    public abstract ClothingDao clothingDao();
 }

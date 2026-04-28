@@ -10,12 +10,12 @@ import androidx.room.Index;
                 @ForeignKey(entity = Outfit.class,
                         parentColumns = "outfitId",
                         childColumns = "outfitId",
-                        onDelete = androidx.room.ForeignKey.CASCADE
+                        onDelete = ForeignKey.CASCADE
                 ),
                 @ForeignKey(entity = Clothing.class,
                         parentColumns = "clothingId",
                         childColumns = "clothingId",
-                        onDelete = androidx.room.ForeignKey.CASCADE
+                        onDelete = ForeignKey.CASCADE
                 )
         },
         indices = {@Index(value = "outfitId"), @Index(value = "clothingId")}
@@ -26,6 +26,22 @@ public class OutfitClothingCrossRef {
 
     public OutfitClothingCrossRef(int outfitId, int clothingId) {
         this.outfitId = outfitId;
+        this.clothingId = clothingId;
+    }
+
+    public int getOutfitId() {
+        return outfitId;
+    }
+
+    public void setOutfitId(int outfitId) {
+        this.outfitId = outfitId;
+    }
+
+    public int getClothingId() {
+        return clothingId;
+    }
+
+    public void setClothingId(int clothingId) {
         this.clothingId = clothingId;
     }
 }

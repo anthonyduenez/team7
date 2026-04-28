@@ -7,12 +7,12 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "clothes",
         foreignKeys = {
-                @ForeignKey(entity = Outfit.class,
+                @ForeignKey(entity = User.class,
                         parentColumns = "userId",
                         childColumns = "userId",
-                        onDelete = androidx.room.ForeignKey.CASCADE
+                        onDelete = ForeignKey.CASCADE
                 )},
-        indices = {@Index(value = "outfitId")})
+        indices = {@Index(value = "userId")})
 public class Clothing {
     @PrimaryKey(autoGenerate = true)
     private int clothingId = 0;
@@ -28,5 +28,53 @@ public class Clothing {
         this.clothingType = type;
         this.clothingImage = image;
         this.dateWorn = System.currentTimeMillis();
+    }
+
+    public int getClothingId() {
+        return clothingId;
+    }
+
+    public void setClothingId(int clothingId) {
+        this.clothingId = clothingId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public long getDateWorn() {
+        return dateWorn;
+    }
+
+    public void setDateWorn(long dateWorn) {
+        this.dateWorn = dateWorn;
+    }
+
+    public String getClothingName() {
+        return clothingName;
+    }
+
+    public void setClothingName(String clothingName) {
+        this.clothingName = clothingName;
+    }
+
+    public String getClothingType() {
+        return clothingType;
+    }
+
+    public void setClothingType(String clothingType) {
+        this.clothingType = clothingType;
+    }
+
+    public String getClothingImage() {
+        return clothingImage;
+    }
+
+    public void setClothingImage(String clothingImage) {
+        this.clothingImage = clothingImage;
     }
 }

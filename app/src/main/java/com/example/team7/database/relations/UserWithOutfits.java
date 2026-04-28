@@ -12,7 +12,7 @@ public class UserWithOutfits {
     @Embedded
     User user;
 
-    @Relation(parentColumn = "userid",
+    @Relation(parentColumn = "userId",
               entityColumn = "userId"
     )
     List<Outfit> outfits;
