@@ -19,4 +19,16 @@ public class OutfitWithClothing {
               associateBy = @Junction(OutfitClothingCrossRef.class)
     )
     List<Clothing> clothingItems;
+
+    public Outfit getOutfit() {
+        return outfit;
+    }
+
+    public void setOutfit(Outfit outfit) {
+        this.outfit = outfit;
+    }
+
+    public List<Clothing> getClothingItems() {
+        return clothingItems;
+    }
 }
