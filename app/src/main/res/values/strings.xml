@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">team7</string>
+    <string name="welcome_admin">Welcome Admin!</string>
+    <string name="past_outfits">Past Outfits</string>
+    <string name="create_outfit">Create Outfit</string>
+    <string name="add_remove_users">Add/Remove Users</string>
+    <string name="admin_settings">Admin Settings</string>
+    <string name="admin_settings_text">Admin Settings</string>
 </resources>
