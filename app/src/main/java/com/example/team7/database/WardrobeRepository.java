@@ -1,5 +1,8 @@
 package com.example.team7.database;
 
+import android.app.Application;
+import android.util.Log;
+
 import com.example.team7.database.dao.OutfitDao;
 import com.example.team7.database.dao.ClothingDao;
 import com.example.team7.database.dao.UserDao;
@@ -9,18 +12,28 @@ import com.example.team7.database.entities.OutfitClothingCrossRef;
 import com.example.team7.database.entities.User;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class WardrobeRepository {
-    private UserDao userDao;
-    private OutfitDao outfitDao;
-    private ClothingDao clothingDao;
+    private final UserDao userDao;
+    private final OutfitDao outfitDao;
+    private final ClothingDao clothingDao;
+    private static WardrobeRepository repository;
 
-    int createUser(String username, String password) {
-        return Math.toIntExact(userDao.insertUser(new User(username, password)));
+    private WardrobeRepository(Application application) {
+        AppDatabase db = AppDatabase.getDatabase(application);
+        this.userDao = db.userDao();
+        this.outfitDao = db.outfitDao();
+        this.clothingDao = db.clothingDao();
     }
 
-    User getUser(int userId) {
-        return userDao.getUserById(userId);
+    public static WardrobeRepository getRepository(Application application) {
+        if (repository == null) {
+            repository = new WardrobeRepository(application);
+        }
+        return repository;
     }
 
     //methods for outfits and clothing below

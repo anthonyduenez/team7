@@ -30,6 +30,6 @@ public interface OutfitDao {
     @Query("SELECT * FROM outfits WHERE outfitId = :outfitId")
     OutfitWithClothing getOutfitWithClothing(int outfitId);
 
-    @Delete
+    @Query("DELETE FROM outfits WHERE outfitId = :outfitId")
     void deleteOutfit(int outfitId);
 }

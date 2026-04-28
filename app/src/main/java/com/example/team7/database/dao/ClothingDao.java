@@ -17,6 +17,6 @@ public interface ClothingDao {
     @Query("SELECT * FROM clothes WHERE userId = :userId")
     List<Clothing> getClothingForUser(int userId);
 
-    @Delete
+    @Query("DELETE FROM clothes WHERE clothingId = :clothingId")
     void deleteClothing(int clothingId);
 }

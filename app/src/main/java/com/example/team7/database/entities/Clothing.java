@@ -22,11 +22,11 @@ public class Clothing {
     private String clothingType;
     private String clothingImage;
 
-    public Clothing(int userId, String name, String type, String image) {
+    public Clothing(int userId, String clothingName, String clothingType, String clothingImage) {
         this.userId = userId;
-        this.clothingName = name;
-        this.clothingType = type;
-        this.clothingImage = image;
+        this.clothingName = clothingName;
+        this.clothingType = clothingType;
+        this.clothingImage = clothingImage;
         this.dateWorn = System.currentTimeMillis();
     }
 
