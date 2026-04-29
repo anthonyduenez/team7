@@ -41,6 +41,12 @@ public class ActivityLanding extends Activity {
             }
 
         });
+        binding.logout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showLogOutDialog();
+            }
+        });
 
 
     }
@@ -66,8 +72,10 @@ public class ActivityLanding extends Activity {
     }
 
     private void logout(){
-        startActivity(new Intent(ActivityLanding.this, MainActivity.class));
-        SharedPreferences sharedPreferences = getSharedPreferences("????", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.clear();
+        edit.apply();
         startActivity(new Intent(ActivityLanding.this, MainActivity.class));
     }
 }
