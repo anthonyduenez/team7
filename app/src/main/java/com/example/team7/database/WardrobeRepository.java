@@ -3,6 +3,8 @@ package com.example.team7.database;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.team7.database.dao.OutfitDao;
 import com.example.team7.database.dao.ClothingDao;
 import com.example.team7.database.dao.UserDao;
@@ -84,5 +86,11 @@ public class WardrobeRepository {
 
     public List<Clothing> getClothingForUser(int userId) {
         return clothingDao.getClothingForUser(userId);
+    }
+
+    //methods for users below
+
+    public LiveData<User> findUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
     }
 }
