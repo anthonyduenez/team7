@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface ClothingDao {
     @Insert
-    Void insertClothing(Clothing item);
+    void insertClothing(Clothing item);
 
     @Query("SELECT * FROM clothes WHERE userId = :userId")
     List<Clothing> getClothingForUser(int userId);
