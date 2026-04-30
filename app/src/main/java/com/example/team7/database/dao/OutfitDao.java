@@ -7,7 +7,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 
 import com.example.team7.database.entities.Outfit;
-import com.example.team7.database.entities.OutfitClothingCrossRef;
+import com.example.team7.database.relations.OutfitClothingCrossRef;
 import com.example.team7.database.relations.OutfitWithClothing;
 
 import java.util.List;

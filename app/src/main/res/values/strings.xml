@@ -4,4 +4,7 @@
     <string name="password">Password</string>
     <string name="login_welcome">Welcome to the Fit Tracker!\nPlease log in.</string>
     <string name="login">Login</string>
+    <string name="go_back">Go Back</string>
+    <string name="welcome_username">Create an Outfit!</string>
+    <string name="past_outfits">Past Outfits</string>
 </resources>

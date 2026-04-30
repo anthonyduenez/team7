@@ -49,12 +49,14 @@ public class ActivityLanding extends AppCompatActivity {
         binding.pastOutfits.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
+                showPast();
             }
         });
 
         binding.createOutfit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                showCreate();
             }
 
         });
@@ -67,6 +69,19 @@ public class ActivityLanding extends AppCompatActivity {
 
 
     }
+
+    private void showCreate(){
+        Intent intent = new Intent(this, CreateOutfits.class);
+        intent.putExtra("username", mUsername);
+        startActivity(intent);
+    }
+
+    private void showPast(){
+        Intent intent = new Intent(this, PastOutfits.class);
+        intent.putExtra("username", mUsername);
+        startActivity(intent);
+    }
+
 
     private void showLogOutDialog() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ActivityLanding.this);

@@ -6,7 +6,6 @@ import androidx.room.Junction;
 
 import com.example.team7.database.entities.Outfit;
 import com.example.team7.database.entities.Clothing;
-import com.example.team7.database.entities.OutfitClothingCrossRef;
 
 import java.util.List;
 

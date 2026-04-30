@@ -1,8 +1,11 @@
-package com.example.team7.database.entities;
+package com.example.team7.database.relations;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
+
+import com.example.team7.database.entities.Clothing;
+import com.example.team7.database.entities.Outfit;
 
 @Entity(tableName = "outfit_clothing_cross_ref",
         primaryKeys = {"outfitId", "clothingId"},
