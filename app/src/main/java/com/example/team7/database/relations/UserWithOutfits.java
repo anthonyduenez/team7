@@ -10,10 +10,26 @@ import java.util.List;
 
 public class UserWithOutfits {
     @Embedded
-    User user;
+    protected User user;
 
-    @Relation(parentColumn = "userid",
+    @Relation(parentColumn = "userId",
               entityColumn = "userId"
     )
-    List<Outfit> outfits;
+    protected List<Outfit> outfits;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Outfit> getOutfits() {
+        return outfits;
+    }
+
+    public void setOutfits(List<Outfit> outfits) {
+        this.outfits = outfits;
+    }
 }
