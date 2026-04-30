@@ -87,7 +87,7 @@ public class ActivityLanding extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void showNewClothe(){
+    private void showNewClothes(){
         Intent intent = new Intent(this, addClothes.class);
         intent.putExtra("username", mUsername);
         startActivity(intent);
