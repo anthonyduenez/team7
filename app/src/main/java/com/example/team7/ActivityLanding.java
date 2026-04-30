@@ -64,7 +64,7 @@ public class ActivityLanding extends AppCompatActivity {
 
         binding.addClothes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {showNewClothe(); }
+            public void onClick(View v) {showNewClothes(); }
         });
 
         binding.logout.setOnClickListener(new View.OnClickListener(){
