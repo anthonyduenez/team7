@@ -11,22 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Team7">
-
+        <activity
+            android:name=".AdminClasses.AddRemoveUsers"
+            android:exported="false" />
         <activity
             android:name=".ActivityLanding"
             android:exported="false"
             android:theme="@style/Theme.Team7" />
-
+        <activity
+            android:name=".AdminClasses.AdminLanding"
+            android:exported="false"
+            android:theme="@style/Theme.Team7" />
+        <activity
+            android:name=".AdminClasses.AdminSettings"
+            android:exported="false"
+            android:theme="@style/Theme.Team7" />
         <activity
             android:name=".CreateOutfits"
             android:exported="false"
             android:theme="@style/Theme.Team7" />
-
         <activity
             android:name=".PastOutfits"
             android:exported="false"
             android:theme="@style/Theme.Team7" />
-
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -34,6 +41,7 @@
             android:theme="@style/Theme.Team7">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

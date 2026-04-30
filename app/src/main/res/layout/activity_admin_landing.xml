@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminLanding">
+    tools:context=".AdminClasses.AdminLanding">
 
     <TextView
         android:id="@+id/titleLoginTextView"
@@ -44,18 +44,6 @@
         app:layout_constraintTop_toBottomOf="@+id/pastOutfits" />
 
     <Button
-        android:id="@+id/addRemoveUser"
-        android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:layout_margin="16dp"
-        android:text="@string/add_remove_users"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.781"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createOutfit" />
-
-    <Button
         android:id="@+id/adminSettings"
         android:layout_width="match_parent"
         android:layout_height="105dp"
@@ -65,7 +53,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addRemoveUser" />
+        app:layout_constraintTop_toBottomOf="@+id/createOutfit" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_margin="16dp"
+        android:text="@string/logout"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminSettings" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
