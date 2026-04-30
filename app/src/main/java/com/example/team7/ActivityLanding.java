@@ -3,27 +3,44 @@ package com.example.team7;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.app.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.team7.database.WardrobeRepository;
 import com.example.team7.databinding.ActivityLandingBinding;
 
 
 
-public class ActivityLanding extends Activity {
-    ActivityLandingBinding binding;
+public class ActivityLanding extends AppCompatActivity {
+    private ActivityLandingBinding binding;
+
+    private WardrobeRepository repository;
 
     private static final String TAG = "DAC_FITTRACKER";
     String mUsername = "";
+
+    public static Intent mainIntentFactory(Context applicationContext, int userId) {
+        Intent intent = new Intent(applicationContext, ActivityLanding.class);
+        SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("userId", userId);
+        editor.apply();
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLandingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        repository = WardrobeRepository.getRepository(getApplication());
 
         mUsername = getIntent().getStringExtra("username");
         if (mUsername == null) mUsername = "User";
@@ -73,9 +90,9 @@ public class ActivityLanding extends Activity {
 
     private void logout(){
         SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.clear();
-        edit.apply();
-        startActivity(new Intent(ActivityLanding.this, MainActivity.class));
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("userId", -1);
+        editor.apply();
+        startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
     }
 }
