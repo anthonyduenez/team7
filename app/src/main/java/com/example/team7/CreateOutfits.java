@@ -64,12 +64,9 @@ public class CreateOutfits extends AppCompatActivity {
 
 
     private void back(){
-        LiveData<User> userObserver = repository.findUserByUsername(mUsername);
-        userObserver.observe(this, user -> {
-            Intent intent = new Intent(this, ActivityLanding.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("username", mUsername);
-            startActivity(intent);
-        });
+        Intent intent = new Intent(this, ActivityLanding.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("username", mUsername);
+        startActivity(intent);
     }
 }
