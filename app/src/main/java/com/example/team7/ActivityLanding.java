@@ -61,14 +61,18 @@ public class ActivityLanding extends AppCompatActivity {
             }
 
         });
+
+        binding.addClothes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {showNewClothe(); }
+        });
+
         binding.logout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 showLogOutDialog();
             }
         });
-
-
     }
 
     private void showCreate(){
@@ -83,6 +87,11 @@ public class ActivityLanding extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void showNewClothe(){
+        Intent intent = new Intent(this, addClothes.class);
+        intent.putExtra("username", mUsername);
+        startActivity(intent);
+    }
 
     private void showLogOutDialog() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ActivityLanding.this);
