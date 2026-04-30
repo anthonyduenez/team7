@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     toastMaker("Incorrect password");
-                    binding.passwordLoginEditText.setSelection(0);
-                }
+                    binding.passwordLoginEditText.setSelection(0);                }
+
             } else {
                 toastMaker("Username not found");
                 binding.usernameLoginEditText.setSelection(0);

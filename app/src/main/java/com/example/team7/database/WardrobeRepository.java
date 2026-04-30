@@ -1,7 +1,6 @@
 package com.example.team7.database;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -10,13 +9,10 @@ import com.example.team7.database.dao.ClothingDao;
 import com.example.team7.database.dao.UserDao;
 import com.example.team7.database.entities.Clothing;
 import com.example.team7.database.entities.Outfit;
-import com.example.team7.database.entities.OutfitClothingCrossRef;
 import com.example.team7.database.entities.User;
+import com.example.team7.database.relations.OutfitClothingCrossRef;
 
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 public class WardrobeRepository {
     private final UserDao userDao;

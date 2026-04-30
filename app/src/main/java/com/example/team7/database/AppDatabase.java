@@ -14,8 +14,8 @@ import com.example.team7.database.dao.ClothingDao;
 import com.example.team7.database.dao.UserDao;
 import com.example.team7.database.entities.Outfit;
 import com.example.team7.database.entities.Clothing;
-import com.example.team7.database.entities.OutfitClothingCrossRef;
 import com.example.team7.database.entities.User;
+import com.example.team7.database.relations.OutfitClothingCrossRef;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -39,6 +39,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ClothingDao clothingDao();
 
     public static AppDatabase getDatabase(final Context context) {
+
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 Log.i("AppDatabase", "Creating database instance");
