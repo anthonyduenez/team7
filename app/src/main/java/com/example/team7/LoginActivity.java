@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import com.example.team7.AdminClasses.AdminLanding;
 import com.example.team7.database.WardrobeRepository;
 import com.example.team7.database.entities.User;
 import com.example.team7.databinding.ActivityLoginBinding;
@@ -53,7 +54,12 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("userId", user.getUserId());
                     editor.apply();
-                    Intent intent = new Intent(this, ActivityLanding.class);
+                    Intent intent;
+                    if(user.isAdmin()) {
+                        intent = new Intent(this, AdminLanding.class);
+                    } else {
+                        intent = new Intent(this, ActivityLanding.class);
+                    }
                     intent.putExtra("username", username);
                     startActivity(intent);
                 } else {
@@ -72,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    static Intent loginIntentFactory(Context context) {
+    public static Intent loginIntentFactory(Context context) {
         return new Intent(context, LoginActivity.class);
     }
 }
