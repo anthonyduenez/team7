@@ -89,4 +89,8 @@ public class WardrobeRepository {
     public LiveData<User> findUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
+
+    public User getUserByID(int userID) {
+        return userDao.getUserById(userID);
+    }
 }

@@ -37,8 +37,7 @@ public class AdminSettings extends AppCompatActivity {
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminSettings.this, AdminLanding.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

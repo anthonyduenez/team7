@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
 import com.example.team7.CreateOutfits;
 import com.example.team7.LoginActivity;
 import com.example.team7.PastOutfits;
 import com.example.team7.database.WardrobeRepository;
+import com.example.team7.database.entities.User;
 import com.example.team7.databinding.ActivityAdminLandingBinding;
 
 public class AdminLanding extends AppCompatActivity {
@@ -27,14 +29,28 @@ public class AdminLanding extends AppCompatActivity {
 
         repository = WardrobeRepository.getRepository(getApplication());
         String Username = getIntent().getStringExtra("username");
-        if (Username == null) Username = "User";
+
+        if (Username == null) {
+            SharedPreferences sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("userId", -1);
+            if (userId != -1) {
+                User user = repository.getUserByID(userId);
+                if (user != null)
+                    Username = user.getUsername();
+            }
+        }
+        if (Username == null) {
+            Username = "User";
+        }
         binding.titleLoginTextView.setText("Welcome " + Username + "!");
 
 
+        String finalUsername = Username;
         binding.pastOutfits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminLanding.this, PastOutfits.class);
+                intent.putExtra("username", finalUsername);
                 startActivity(intent);
             }
         });
@@ -43,6 +59,7 @@ public class AdminLanding extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminLanding.this, CreateOutfits.class);
+                intent.putExtra("username", finalUsername);
                 startActivity(intent);
             }
         });
@@ -51,6 +68,7 @@ public class AdminLanding extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminLanding.this, AdminSettings.class);
+                intent.putExtra("username", finalUsername);
                 startActivity(intent);
             }
         });
