@@ -25,10 +25,125 @@
         android:id="@+id/back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="@string/go_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create" />
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottom_image" />
+
+    <ImageView
+        android:id="@+id/head_image"
+        android:layout_width="92dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="319dp"
+        tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintTop_toBottomOf="@id/Welcome" />
+
+    <ImageView
+        android:id="@+id/torso_image"
+        android:layout_width="92dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head_image"
+        tools:layout_editor_absoluteY="453dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/bottom_image"
+        android:layout_width="92dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="578dp"
+        app:layout_constraintTop_toBottomOf="@id/torso_image"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/head_right"
+        android:layout_width="79dp"
+        android:layout_height="58dp"
+        android:text=">"
+        android:textSize="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@id/head_image"
+        app:layout_constraintTop_toTopOf="@id/head_image" />
+
+    <Button
+        android:id="@+id/head_left"
+        android:text="@string/left_carot"
+        android:textSize="30dp"
+        android:layout_width="79dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@id/head_image"
+        app:layout_constraintTop_toTopOf="@id/head_image" />
+
+    <Button
+        android:id="@+id/torso_right"
+        android:text=">"
+        android:textSize="30dp"
+        android:layout_width="79dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@id/torso_image"
+        app:layout_constraintTop_toTopOf="@id/torso_image" />
+
+    <Button
+        android:id="@+id/torso_left"
+        android:text="@string/left_carot"
+        android:textSize="30dp"
+        android:layout_width="79dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@id/torso_image"
+        app:layout_constraintTop_toTopOf="@id/torso_image" />
+
+    <Button
+        android:id="@+id/bottom_right"
+        android:text=">"
+        android:textSize="30dp"
+        android:layout_width="79dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@id/bottom_image"
+        app:layout_constraintTop_toTopOf="@id/bottom_image" />
+
+    <Button
+        android:id="@+id/bottom_left"
+        android:text="@string/left_carot"
+        android:textSize="30dp"
+        android:layout_width="79dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@id/bottom_image"
+        app:layout_constraintTop_toTopOf="@id/bottom_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
