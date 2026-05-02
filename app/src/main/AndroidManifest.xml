@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Team7">
         <activity
-            android:name=".addClothes"
+            android:name=".AddClothes"
             android:exported="false" />
         <activity
             android:name=".ActivityLanding"
