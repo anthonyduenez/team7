@@ -19,10 +19,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Team7">
         <activity
-            android:name=".AddClothes"
+            android:name=".AdminClasses.AddRemoveUsers"
             android:exported="false" />
         <activity
             android:name=".ActivityLanding"
+            android:exported="false"
+            android:theme="@style/Theme.Team7" />
+        <activity
+            android:name=".AdminClasses.AdminLanding"
+            android:exported="false"
+            android:theme="@style/Theme.Team7" />
+        <activity
+            android:name=".AdminClasses.AdminSettings"
             android:exported="false"
             android:theme="@style/Theme.Team7" />
         <activity
