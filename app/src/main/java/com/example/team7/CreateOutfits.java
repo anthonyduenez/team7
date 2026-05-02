@@ -34,6 +34,10 @@ public class CreateOutfits extends AppCompatActivity {
     List<Clothing> torso_clothes;
     List<Clothing> head_clothes;
 
+    int idx1 = 0;
+    int idx2 = 0;
+    int idx3 = 0;
+
 
     public static Intent mainIntentFactory(Context applicationContext, int userId) {
         Intent intent = new Intent(applicationContext, CreateOutfits.class);
@@ -57,12 +61,7 @@ public class CreateOutfits extends AppCompatActivity {
             mUsername = "User";
 
         LiveData<User> userObserver = repository.findUserByUsername(mUsername);
-        AtomicReference<User> user_holder = new AtomicReference<>();
-        userObserver.observe(this, u -> {
-            user_holder.set(u);
-        });
-
-        User user = user_holder.get();
+        userObserver.observe(this, user -> {
 
 
         if (user != null) {
@@ -80,17 +79,17 @@ public class CreateOutfits extends AppCompatActivity {
                     case "torso":
                         torso_clothes.add(c);
                         break;
-                    case "bottom":
+                    case "legs":
                         bottom_clothes.add(c);
                         break;
                 }
             }
 
-            if (!head_clothes.isEmpty())
-                binding.headImage.setImageURI(Uri.parse(head_clothes.get(0).getClothingImage()));
 
 
-        }
+            update_images();
+
+        }  });
         binding.back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -98,9 +97,82 @@ public class CreateOutfits extends AppCompatActivity {
             }
         });
 
+        binding.headRight.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                idx1= update_idx(idx1, head_clothes, true);
+                update_images();
+            }
+        });
+
+        binding.headLeft.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                idx1= update_idx(idx1, head_clothes, false);
+                update_images();
+            }
+        });
+
+        binding.torsoRight.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                idx2 = update_idx(idx2, torso_clothes, true);
+                update_images();
+            }
+        });
+
+        binding.torsoLeft.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                idx2 = update_idx(idx2, torso_clothes, false);
+                update_images();
+            }
+        });
+
+
+        binding.bottomRight.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                idx3= update_idx(idx3, bottom_clothes, true);
+                update_images();
+            }
+        });
+
+        binding.bottomLeft.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                idx3 = update_idx(idx3, bottom_clothes, false);
+                update_images();
+            }
+        });
+
 
     }
 
+    private int update_idx(int idx, List<Clothing> lst, boolean increase){
+        if (increase && idx < lst.size()-1)
+            idx++;
+        else if (increase){
+            idx = 0;
+        }else if (idx > 0){
+            idx--;
+        }else
+            idx = lst.size()-1;
+        return idx;
+    }
+
+
+    private void update_images(){
+        if (!head_clothes.isEmpty())
+            binding.headImage.setImageURI(Uri.parse(head_clothes.get(idx1).getClothingImage()));
+
+        if (!torso_clothes.isEmpty())
+            binding.torsoImage.setImageURI(Uri.parse(torso_clothes.get(idx2).getClothingImage()));
+
+        if (!bottom_clothes.isEmpty())
+            binding.bottomImage.setImageURI(Uri.parse(bottom_clothes.get(idx3).getClothingImage()));
+
+    }
 
     private void back(){
         Intent intent = new Intent(this, ActivityLanding.class);

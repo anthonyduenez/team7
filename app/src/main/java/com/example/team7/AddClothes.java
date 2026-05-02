@@ -190,7 +190,7 @@ public class AddClothes extends AppCompatActivity {
 
     private void back() {
         Intent intent = new Intent(this, ActivityLanding.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+     //   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("username", mUsername);
         startActivity(intent);
     }

@@ -7,6 +7,7 @@
     <string name="go_back">Go Back</string>
     <string name="welcome_username">Create an Outfit!</string>
     <string name="past_outfits">Past Outfits</string>
+    <string name="left_carot"><![CDATA[<]]></string>
 
     <string-array name="clothing_types">
         <item>Head</item>
