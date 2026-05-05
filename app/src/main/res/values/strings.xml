@@ -14,5 +14,13 @@
     <string name="admin_settings_text">Admin Settings</string>
     <string name="logout">Logout</string>
     <string name="clear_user_log">Clear User Log</string>
+    <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+    <string name="clear_log_prompt">Enter the username to clear all clothes and outfits.</string>
+    <string name="clear_log_username_required">Please enter a username.</string>
+    <string name="clear_log_confirm_message">This will permanently clear all clothes and outfits for %1$s.</string>
+    <string name="clear_log_success">Cleared clothes and outfits for %1$s.</string>
+    <string name="clear_log_admin_protected">Cannot clear data for an admin user.</string>
+    <string name="clear_log_user_not_found">User not found.</string>
     <string name="left_carot"><![CDATA[<]]></string>
 </resources>

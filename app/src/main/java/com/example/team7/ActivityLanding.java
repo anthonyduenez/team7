@@ -75,6 +75,8 @@ public class ActivityLanding extends AppCompatActivity {
         });
     }
 
+    //TODO: add intent factory methods to each of the activities and use those instead of creating new intents here
+
     private void showCreate(){
         Intent intent = new Intent(this, CreateOutfits.class);
         intent.putExtra("username", mUsername);

@@ -15,6 +15,10 @@ import com.example.team7.database.relations.OutfitClothingCrossRef;
 import java.util.List;
 
 public class WardrobeRepository {
+    public interface ClearUserLogCallback {
+        void onComplete(boolean success, boolean isAdminUser);
+    }
+
     private final UserDao userDao;
     private final OutfitDao outfitDao;
     private final ClothingDao clothingDao;
@@ -90,5 +94,25 @@ public class WardrobeRepository {
 
     public LiveData<User> findUserByUsername(String username) {
         return userDao.getUserByUsername(username);
+    }
+
+    public void clearUserLogByUsername(String username, ClearUserLogCallback callback) {
+        AppDatabase.DB_EXECUTOR.execute(() -> {
+            User user = userDao.getUserByUsernameSync(username);
+            if (user == null) {
+                callback.onComplete(false, false);
+                return;
+            }
+
+            if (user.isAdmin()) {
+                callback.onComplete(false, true);
+                return;
+            }
+
+            int userId = user.getUserId();
+            outfitDao.deleteOutfitsForUser(userId);
+            clothingDao.deleteClothingForUser(userId);
+            callback.onComplete(true, false);
+        });
     }
 }

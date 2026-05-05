@@ -21,6 +21,10 @@ import com.example.team7.database.WardrobeRepository;
 import com.example.team7.databinding.ActivityAddClothesBinding;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class AddClothes extends AppCompatActivity {
     private ActivityAddClothesBinding binding;
@@ -91,13 +95,24 @@ public class AddClothes extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         Uri imageUri = result.getData().getData();
                         if (imageUri != null) {
-                            selectedImageUri = imageUri;
-                            binding.picture.setImageURI(selectedImageUri);
+                            // Copy the picked image into our app's external files directory so we always
+                            // have access to it later (some providers, e.g., Google Photos, return
+                            // non-persistable URIs that can't be opened later).
+                            File copied = copyUriToFile(imageUri);
+                            if (copied != null) {
+                                selectedImageUri = FileProvider.getUriForFile(this, "com.example.team7.fileprovider", copied);
+                                binding.picture.setImageURI(selectedImageUri);
+                            } else {
+                                // Fall back to using the original URI if copy failed (best-effort)
+                                selectedImageUri = imageUri;
+                                binding.picture.setImageURI(selectedImageUri);
+                            }
                         }
                     }
                 }
         );
 
+        // set up click listeners (must be inside onCreate)
         binding.picture.setOnClickListener(v -> {
             String[] cameraOptions = {"Take Photo", "Choose from Gallery"};
 
@@ -127,6 +142,32 @@ public class AddClothes extends AppCompatActivity {
                 back();
             }
         });
+
+    }
+
+    /**
+     * Copy data pointed to by sourceUri into a temp file in our app external pictures directory.
+     * Returns the created File or null on failure.
+     */
+    private File copyUriToFile(Uri sourceUri) {
+        File dest = createImageFile();
+        if (dest == null) return null;
+
+        try (InputStream in = getContentResolver().openInputStream(sourceUri);
+             OutputStream out = new FileOutputStream(dest)) {
+            if (in == null) return null;
+            byte[] buf = new byte[8192];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            out.flush();
+            return dest;
+        } catch (IOException e) {
+            android.util.Log.e(TAG, "Failed to copy image to app storage", e);
+            return null;
+        }
+
     }
 
     public void openCamera() {
@@ -147,14 +188,19 @@ public class AddClothes extends AppCompatActivity {
         try {
             return File.createTempFile(imageFileName, ".jpg", storageDir);
         } catch (Exception e) {
-            e.printStackTrace();
+            android.util.Log.e(TAG, "Failed to create image file", e);
             return null;
         }
     }
 
     public void openGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        // Use ACTION_OPEN_DOCUMENT to obtain a persistable URI permission for documents (including files
+        // from Downloads). ACTION_PICK does not reliably provide persistable permissions.
+        Intent galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         galleryIntent.setType("image/*");
+        galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        galleryIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        galleryIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         galleryLauncher.launch(galleryIntent);
     }
 
