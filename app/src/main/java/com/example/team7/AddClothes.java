@@ -4,34 +4,25 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.LiveData;
 
 import com.example.team7.database.WardrobeRepository;
-import com.example.team7.database.entities.User;
 import com.example.team7.databinding.ActivityAddClothesBinding;
 
 import java.io.File;
 
-public class addClothes extends AppCompatActivity {
+public class AddClothes extends AppCompatActivity {
     private ActivityAddClothesBinding binding;
     private static final String TAG = "DAC_FITTRACKER";
 
@@ -46,7 +37,7 @@ public class addClothes extends AppCompatActivity {
     private WardrobeRepository repository;
 
     public static Intent mainIntentFactory(Context applicationContext, int userId) {
-        Intent intent = new Intent(applicationContext, addClothes.class);
+        Intent intent = new Intent(applicationContext, AddClothes.class);
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("userId", userId);
@@ -199,7 +190,7 @@ public class addClothes extends AppCompatActivity {
 
     private void back() {
         Intent intent = new Intent(this, ActivityLanding.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+     //   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("username", mUsername);
         startActivity(intent);
     }
