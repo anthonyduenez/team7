@@ -30,6 +30,11 @@
             android:name=".CreateOutfits"
             android:exported="false"
             android:theme="@style/Theme.Team7" />
+
+        <activity
+            android:name=".AddClothes"
+            android:exported="false"
+            android:theme="@style/Theme.Team7" />
         <activity
             android:name=".PastOutfits"
             android:exported="false"
