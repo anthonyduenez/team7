@@ -35,6 +35,13 @@ public class ActivityLanding extends AppCompatActivity {
         return intent;
     }
 
+    // Convenience intent factory that carries the username as an extra.
+    public static Intent intentFactory(Context context, String username) {
+        Intent intent = new Intent(context, ActivityLanding.class);
+        intent.putExtra("username", username);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,24 +81,18 @@ public class ActivityLanding extends AppCompatActivity {
             }
         });
     }
-
-    //TODO: add intent factory methods to each of the activities and use those instead of creating new intents here
-
     private void showCreate(){
-        Intent intent = new Intent(this, CreateOutfits.class);
-        intent.putExtra("username", mUsername);
+        Intent intent = CreateOutfits.intentFactory(this, mUsername);
         startActivity(intent);
     }
 
     private void showPast(){
-        Intent intent = new Intent(this, PastOutfits.class);
-        intent.putExtra("username", mUsername);
+        Intent intent = PastOutfits.intentFactory(this, mUsername);
         startActivity(intent);
     }
 
     private void showNewClothes(){
-        Intent intent = new Intent(this, AddClothes.class);
-        intent.putExtra("username", mUsername);
+        Intent intent = AddClothes.intentFactory(this, mUsername);
         startActivity(intent);
     }
 

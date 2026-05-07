@@ -57,10 +57,11 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent;
                     if(user.isAdmin()) {
                         intent = new Intent(this, AdminLanding.class);
+                        intent.putExtra("username", username);
                     } else {
-                        intent = new Intent(this, ActivityLanding.class);
+                        // use ActivityLanding's intent factory so username is added consistently
+                        intent = ActivityLanding.intentFactory(getApplicationContext(), username);
                     }
-                    intent.putExtra("username", username);
                     startActivity(intent);
                 } else {
                     toastMaker("Incorrect password");

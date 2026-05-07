@@ -35,6 +35,13 @@ public class PastOutfits extends AppCompatActivity {
         return intent;
     }
 
+    // Convenience intent factory that carries the username as an extra.
+    public static Intent intentFactory(Context context, String username) {
+        Intent intent = new Intent(context, PastOutfits.class);
+        intent.putExtra("username", username);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +67,8 @@ public class PastOutfits extends AppCompatActivity {
 
 
     private void back(){
-            Intent intent = new Intent(this, ActivityLanding.class);
+            Intent intent = ActivityLanding.intentFactory(getApplicationContext(), mUsername);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("username", mUsername);
             startActivity(intent);
     }
 }

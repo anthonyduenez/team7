@@ -15,12 +15,12 @@ import androidx.room.PrimaryKey;
         indices = {@Index(value = "userId")}
 )
 
-//TODO: Add static array of size 3 for clothing ids, and add methods to add/remove clothing from outfit
-
 public class Outfit {
     @PrimaryKey(autoGenerate = true)
     private int outfitId = 0;
     private int userId;
+
+
     private Long dateCreated;
 
     public Outfit(int userId) {

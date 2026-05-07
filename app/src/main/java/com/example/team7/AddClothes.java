@@ -49,6 +49,13 @@ public class AddClothes extends AppCompatActivity {
         return intent;
     }
 
+    // Convenience intent factory that carries the username as an extra.
+    public static Intent intentFactory(Context context, String username) {
+        Intent intent = new Intent(context, AddClothes.class);
+        intent.putExtra("username", username);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -235,9 +242,8 @@ public class AddClothes extends AppCompatActivity {
     }
 
     private void back() {
-        Intent intent = new Intent(this, ActivityLanding.class);
-     //   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("username", mUsername);
+        Intent intent = ActivityLanding.intentFactory(getApplicationContext(), mUsername);
+        // keep previous behavior (no CLEAR_TOP) unless needed
         startActivity(intent);
     }
 }
