@@ -115,4 +115,15 @@ public class WardrobeRepository {
             callback.onComplete(true, false);
         });
     }
+
+    public void createOutfitWithClothing(int userId, List<Clothing> selectedClothes) {
+        AppDatabase.DB_EXECUTOR.execute(() -> {
+            long outfitIdLong = addOutfit(userId);
+            int outfitId = (int) outfitIdLong;
+
+            for (Clothing clothing : selectedClothes) {
+                addClothingToOutfit(outfitId, clothing.getClothingId());
+            }
+        });
+    }
 }
