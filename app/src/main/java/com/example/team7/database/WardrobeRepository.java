@@ -56,6 +56,10 @@ public class WardrobeRepository {
         return outfitDao.insertOutfit(outfit);
     }
 
+    public long addOutfit(Outfit outfit) {
+        return outfitDao.insertOutfit(outfit);
+    }
+
     public void addClothingToOutfit(int outfitId, int clothingId) {
         OutfitClothingCrossRef crossRef = new OutfitClothingCrossRef(outfitId, clothingId);
         outfitDao.addClothingToOutfit(crossRef);

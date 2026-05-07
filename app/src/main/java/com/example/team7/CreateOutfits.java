@@ -14,7 +14,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.team7.database.WardrobeRepository;
 import com.example.team7.database.entities.Clothing;
+import com.example.team7.database.entities.Outfit;
 import com.example.team7.database.entities.User;
+import com.example.team7.database.relations.OutfitWithClothing;
 import com.example.team7.databinding.CreateOutfitsBinding;
 
 import java.util.List;
@@ -34,12 +36,16 @@ public class CreateOutfits extends AppCompatActivity {
     List<Clothing> torso_clothes;
     List<Clothing> head_clothes;
 
+    private static int uid = 0;
+
     int idx1 = 0;
     int idx2 = 0;
     int idx3 = 0;
 
 
     public static Intent mainIntentFactory(Context applicationContext, int userId) {
+        uid = userId;
+
         Intent intent = new Intent(applicationContext, CreateOutfits.class);
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -150,6 +156,26 @@ public class CreateOutfits extends AppCompatActivity {
             public void onClick(View v){
                 idx3 = update_idx(idx3, bottom_clothes, false);
                 update_images();
+            }
+        });
+
+
+        binding.create.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Outfit outfit = new Outfit(uid);
+
+                List<Clothing> selected_clothes = new ArrayList<>();
+
+                selected_clothes.add(head_clothes.get(idx1));
+                selected_clothes.add(torso_clothes.get(idx2));
+                selected_clothes.add(bottom_clothes.get(idx3));
+
+                outfit.setUris(head_clothes.get(idx1).getClothingImage(), torso_clothes.get(idx2).getClothingImage(), bottom_clothes.get(idx3).getClothingImage());
+
+                repository.addOutfit(outfit);
+
+                back();
             }
         });
 

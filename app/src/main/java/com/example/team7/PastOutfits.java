@@ -2,19 +2,29 @@ package com.example.team7;
 
 
 
+import static androidx.core.view.ViewGroupKt.setMargins;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.lifecycle.LiveData;
 
 import com.example.team7.database.WardrobeRepository;
+import com.example.team7.database.entities.Outfit;
 import com.example.team7.database.entities.User;
 import com.example.team7.databinding.CreateOutfitsBinding;
 import com.example.team7.databinding.PastOutfitsBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PastOutfits extends AppCompatActivity {
@@ -25,8 +35,11 @@ public class PastOutfits extends AppCompatActivity {
     private static final String TAG = "DAC_FITTRACKER";
     String mUsername = "";
 
+    private static int uid = 0;
 
     public static Intent mainIntentFactory(Context applicationContext, int userId) {
+        uid = userId;
+
         Intent intent = new Intent(applicationContext, PastOutfits.class);
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -54,6 +67,28 @@ public class PastOutfits extends AppCompatActivity {
         if (mUsername == null) mUsername = "User";
 
 
+
+        List<Outfit> outfitList = new ArrayList<>();
+
+        outfitList = repository.getOutfitsForUser(uid);
+
+        String[] uris = outfitList.get(0).getUris();
+
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                300
+        );
+        params.setMargins(16, 16, 16, 16);
+
+        for (int i = 0; i < 3; i++) {
+            ImageView imageView = new ImageView(this);
+            imageView.setLayoutParams(params);
+            imageView.setImageURI(Uri.parse(uris[i]));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+            binding.main.addView(imageView);
+        }
 
         binding.back.setOnClickListener(new View.OnClickListener(){
             @Override

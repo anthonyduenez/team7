@@ -20,6 +20,34 @@ public class Outfit {
     private int outfitId = 0;
     private int userId;
 
+    public String getUri1() {
+        return uri1;
+    }
+
+    public void setUri1(String uri1) {
+        this.uri1 = uri1;
+    }
+
+    public String getUri2() {
+        return uri2;
+    }
+
+    public void setUri2(String uri2) {
+        this.uri2 = uri2;
+    }
+
+    public String getUri3() {
+        return uri3;
+    }
+
+    public void setUri3(String uri3) {
+        this.uri3 = uri3;
+    }
+
+    private String uri1;
+    private String uri2;
+    private String uri3;
+
 
     private Long dateCreated;
 
@@ -50,5 +78,15 @@ public class Outfit {
 
     public void setDateCreated(Long dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public String[] getUris(){
+        return new String[]{uri1, uri2, uri3};
+    }
+
+    public void setUris(String u1, String u2, String u3){
+        this.uri1 = u1;
+        this.uri2 = u2;
+        this.uri3 = u3;
     }
 }
