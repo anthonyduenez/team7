@@ -4,7 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
     tools:context=".AdminClasses.AddRemoveUsers">
+
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/usernameTitle"
+        android:textSize="45sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        app:layout_constraintTop_toBottomOf="@id/usernameTextView"/>
+
+    <Button
+        android:id="@+id/createUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="@string/create_new_user"
+        app:layout_constraintTop_toBottomOf="@id/userRecyclerView" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="@string/back"
+        app:layout_constraintTop_toBottomOf="@id/createUserButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

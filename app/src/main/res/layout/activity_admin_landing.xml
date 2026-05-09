@@ -22,7 +22,7 @@
     <Button
         android:id="@+id/pastOutfits"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="90dp"
         android:layout_margin="16dp"
         android:text="@string/past_outfits"
         android:textSize="32sp"
@@ -34,7 +34,7 @@
     <Button
         android:id="@+id/createOutfit"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="90dp"
         android:layout_margin="16dp"
         android:text="@string/create_outfit"
         android:textSize="32sp"
@@ -44,11 +44,11 @@
         app:layout_constraintTop_toBottomOf="@+id/pastOutfits" />
 
     <Button
-        android:id="@+id/adminSettings"
+        android:id="@+id/addClothes"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="90dp"
         android:layout_margin="16dp"
-        android:text="@string/admin_settings"
+        android:text="@string/add_clothes"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"
@@ -56,9 +56,21 @@
         app:layout_constraintTop_toBottomOf="@+id/createOutfit" />
 
     <Button
+        android:id="@+id/adminSettings"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_margin="16dp"
+        android:text="@string/admin_settings"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addClothes" />
+
+    <Button
         android:id="@+id/logout"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="90dp"
         android:layout_margin="16dp"
         android:text="@string/logout"
         android:textSize="32sp"

@@ -23,4 +23,10 @@
     <string name="clear_log_admin_protected">Cannot clear data for an admin user.</string>
     <string name="clear_log_user_not_found">User not found.</string>
     <string name="left_carot"><![CDATA[<]]></string>
+    <string name="add_clothes">Add Clothes</string>
+    <string name="back">Back</string>
+    <string name="usernameTitle">All Users</string>
+    <string name="create_new_user">Create New User</string>
+    <string name="usernameRecycle">Username</string>
+    <string name="remove">Remove</string>
 </resources>
