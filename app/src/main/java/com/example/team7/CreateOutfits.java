@@ -208,8 +208,6 @@ public class CreateOutfits extends AppCompatActivity {
     }
 
     private void back(){
-        Intent intent = ActivityLanding.intentFactory(getApplicationContext(), mUsername);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        finish();
     }
 }

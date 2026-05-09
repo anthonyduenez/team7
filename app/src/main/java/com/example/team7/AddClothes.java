@@ -242,8 +242,6 @@ public class AddClothes extends AppCompatActivity {
     }
 
     private void back() {
-        Intent intent = ActivityLanding.intentFactory(getApplicationContext(), mUsername);
-        // keep previous behavior (no CLEAR_TOP) unless needed
-        startActivity(intent);
+        finish();
     }
 }
