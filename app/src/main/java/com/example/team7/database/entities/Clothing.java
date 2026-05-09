@@ -1,9 +1,15 @@
 package com.example.team7.database.entities;
 
+import android.provider.MediaStore;
+
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 @Entity(tableName = "clothes",
         foreignKeys = {

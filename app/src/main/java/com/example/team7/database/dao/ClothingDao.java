@@ -1,7 +1,6 @@
 package com.example.team7.database.dao;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -19,4 +18,7 @@ public interface ClothingDao {
 
     @Query("DELETE FROM clothes WHERE clothingId = :clothingId")
     void deleteClothing(int clothingId);
+
+    @Query("DELETE FROM clothes WHERE userId = :userId")
+    void deleteClothingForUser(int userId);
 }
