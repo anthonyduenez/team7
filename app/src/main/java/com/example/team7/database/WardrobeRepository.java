@@ -36,9 +36,11 @@ public class WardrobeRepository {
 
     //methods for outfits and clothing below
 
-    public long addClothing(int userId, String name, String type, String image) {
-        Clothing item = new Clothing(userId, name, type, image);
-        return clothingDao.insertClothing(item);
+    public void addClothing(int userId, String name, String type, String image) {
+        AppDatabase.DB_EXECUTOR.execute(() -> {
+            Clothing item = new Clothing(userId, name, type, image);
+            clothingDao.insertClothing(item);
+        });
     }
 
     public void removeClothing(int clothingId) {
