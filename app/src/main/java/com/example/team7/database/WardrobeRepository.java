@@ -130,4 +130,26 @@ public class WardrobeRepository {
             }
         });
     }
+
+    public LiveData<List<User>> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
+    public void deleteUser(User user) {
+        AppDatabase.DB_EXECUTOR.execute(() -> {
+            userDao.delete(user);
+        });
+    }
+
+    public void updateUser(User user) {
+        AppDatabase.DB_EXECUTOR.execute(() -> {
+            userDao.update(user);
+        });
+    }
+
+    public void insertUser(User user) {
+        AppDatabase.DB_EXECUTOR.execute(() -> {
+           userDao.insertUser(user);
+        });
+    }
 }

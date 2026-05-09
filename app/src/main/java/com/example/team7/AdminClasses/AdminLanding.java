@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.team7.AddClothes;
 import com.example.team7.CreateOutfits;
 import com.example.team7.LoginActivity;
 import com.example.team7.PastOutfits;
@@ -43,6 +44,14 @@ public class AdminLanding extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminLanding.this, CreateOutfits.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.addClothes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminLanding.this, AddClothes.class);
                 startActivity(intent);
             }
         });
