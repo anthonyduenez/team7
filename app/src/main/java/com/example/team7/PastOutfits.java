@@ -1,9 +1,5 @@
 package com.example.team7;
 
-
-
-import static androidx.core.view.ViewGroupKt.setMargins;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,18 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.lifecycle.LiveData;
 
 import com.example.team7.database.WardrobeRepository;
 import com.example.team7.database.entities.Outfit;
-import com.example.team7.database.entities.User;
-import com.example.team7.databinding.CreateOutfitsBinding;
 import com.example.team7.databinding.PastOutfitsBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,14 +24,7 @@ public class PastOutfits extends AppCompatActivity {
 
     private WardrobeRepository repository;
 
-    private static final String TAG = "DAC_FITTRACKER";
-    String mUsername = "";
-
-    private static int uid = 0;
-
     public static Intent mainIntentFactory(Context applicationContext, int userId) {
-        uid = userId;
-
         Intent intent = new Intent(applicationContext, PastOutfits.class);
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -48,7 +33,6 @@ public class PastOutfits extends AppCompatActivity {
         return intent;
     }
 
-    // Convenience intent factory that carries the username as an extra.
     public static Intent intentFactory(Context context, String username) {
         Intent intent = new Intent(context, PastOutfits.class);
         intent.putExtra("username", username);
@@ -63,32 +47,8 @@ public class PastOutfits extends AppCompatActivity {
 
         repository = WardrobeRepository.getRepository(getApplication());
 
-        mUsername = getIntent().getStringExtra("username");
-        if (mUsername == null) mUsername = "User";
-
-
-
-        List<Outfit> outfitList = new ArrayList<>();
-
-        outfitList = repository.getOutfitsForUser(uid);
-
-        String[] uris = outfitList.get(0).getUris();
-
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                300
-        );
-        params.setMargins(16, 16, 16, 16);
-
-        for (int i = 0; i < 3; i++) {
-            ImageView imageView = new ImageView(this);
-            imageView.setLayoutParams(params);
-            imageView.setImageURI(Uri.parse(uris[i]));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-            binding.main.addView(imageView);
-        }
+        int userId = getSharedPreferences("prefs", MODE_PRIVATE).getInt("userId", -1);
+        showPastOutfits(userId);
 
         binding.back.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -96,8 +56,63 @@ public class PastOutfits extends AppCompatActivity {
                 back();
             }
         });
+    }
 
+    private void showPastOutfits(int userId) {
+        binding.outfitContainer.removeAllViews();
 
+        if (userId < 0) {
+            binding.emptyState.setVisibility(View.VISIBLE);
+            binding.emptyState.setText(R.string.no_user_found);
+            return;
+        }
+
+        List<Outfit> outfitList = repository.getOutfitsForUser(userId);
+        if (outfitList == null || outfitList.isEmpty()) {
+            binding.emptyState.setVisibility(View.VISIBLE);
+            binding.emptyState.setText(R.string.no_past_outfits);
+            return;
+        }
+
+        binding.emptyState.setVisibility(View.GONE);
+
+        LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        imageParams.setMargins(0, 16, 0, 0);
+
+        for (Outfit outfit : outfitList) {
+            addOutfitHeader(outfit);
+            String[] uris = outfit.getUris();
+            for (String uri : uris) {
+                if (uri == null || uri.isEmpty()) {
+                    continue;
+                }
+
+                ImageView imageView = new ImageView(this);
+                imageView.setLayoutParams(imageParams);
+                imageView.setAdjustViewBounds(true);
+                imageView.setImageURI(Uri.parse(uri));
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                binding.outfitContainer.addView(imageView);
+            }
+        }
+    }
+
+    private void addOutfitHeader(Outfit outfit) {
+        TextView headerView = new TextView(this);
+        headerView.setText(getString(R.string.outfit_number, outfit.getOutfitId()));
+        headerView.setTextSize(20);
+
+        LinearLayout.LayoutParams headerParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        headerParams.setMargins(0, 24, 0, 0);
+        headerView.setLayoutParams(headerParams);
+
+        binding.outfitContainer.addView(headerView);
     }
 
 

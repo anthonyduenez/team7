@@ -29,4 +29,7 @@
     <string name="create_new_user">Create New User</string>
     <string name="usernameRecycle">Username</string>
     <string name="remove">Remove</string>
+    <string name="no_past_outfits">No past outfits yet.</string>
+    <string name="no_user_found">No logged-in user was found.</string>
+    <string name="outfit_number">Outfit #%1$d</string>
 </resources>

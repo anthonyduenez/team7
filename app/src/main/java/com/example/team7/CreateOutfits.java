@@ -36,16 +36,12 @@ public class CreateOutfits extends AppCompatActivity {
     List<Clothing> torso_clothes;
     List<Clothing> head_clothes;
 
-    private static int uid = 0;
-
     int idx1 = 0;
     int idx2 = 0;
     int idx3 = 0;
 
 
     public static Intent mainIntentFactory(Context applicationContext, int userId) {
-        uid = userId;
-
         Intent intent = new Intent(applicationContext, CreateOutfits.class);
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -163,7 +159,12 @@ public class CreateOutfits extends AppCompatActivity {
         binding.create.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Outfit outfit = new Outfit(uid);
+                int userId = getSharedPreferences("prefs", MODE_PRIVATE).getInt("userId", -1);
+                if (userId < 0 || head_clothes.isEmpty() || torso_clothes.isEmpty() || bottom_clothes.isEmpty()) {
+                    return;
+                }
+
+                Outfit outfit = new Outfit(userId);
 
                 List<Clothing> selected_clothes = new ArrayList<>();
 
